@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# MediaPipe hand landmark model (auto-downloaded on first run, ~8 MB)
+python/hand_landmarker.task
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
