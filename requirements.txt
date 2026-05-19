@@ -1,0 +1,6 @@
+PyQt5>=5.15
+pyvista>=0.40
+pyvistaqt>=0.10
+numpy>=1.23
+mediapipe>=0.10
+opencv-python>=4.8

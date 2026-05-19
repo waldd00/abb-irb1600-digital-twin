@@ -12,6 +12,7 @@ MATLAB kinematics · PyVista visualization · hand-gesture control · built-in r
 ![Platform](https://img.shields.io/badge/Platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
 ![PyVista](https://img.shields.io/badge/3D-PyVista%20%2B%20VTK-76B900?style=flat-square)
 ![MediaPipe](https://img.shields.io/badge/Vision-MediaPipe-FF6F00?style=flat-square&logo=google&logoColor=white)
+![License](https://img.shields.io/badge/License-Educational-lightgrey?style=flat-square)
 
 <br/>
 
@@ -24,6 +25,8 @@ MATLAB kinematics · PyVista visualization · hand-gesture control · built-in r
 ## Overview
 
 This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45** — a 6-axis industrial manipulator widely used in manufacturing. It bridges MATLAB's kinematics engine with a PyQt5 + PyVista desktop application, letting you drive the robot through sliders, keyboard nudges, IK click-to-move, hand gestures, trajectory playback, and a custom scripting language — all in real time.
+
+**Why this project?** Industrial robots are expensive and lab time is scarce. This twin lets you experiment with kinematics algorithms, motion profiles, and gripper logic on your own machine — no hardware required. It started as a university project and grew into a complete simulation environment covering FK/IK, Jacobian analysis, trajectory planning, and computer-vision control.
 
 ---
 
@@ -181,7 +184,7 @@ IK is solved numerically with MATLAB's `lsqnonlin` using a **12-element residual
 $$
 \mathbf{r}(\mathbf{q}) =
 \begin{bmatrix}
-\mathbf{p}(\mathbf{q}) - \mathbf{p}_{\text{des}} \\[4pt]
+\mathbf{p}(\mathbf{q}) - \mathbf{p}_{\text{des}} \\
 \lambda\,\bigl(\mathbf{R}(\mathbf{q})_{:} - \mathbf{R}_{\text{des}_{:}}\bigr)
 \end{bmatrix}
 \in \mathbb{R}^{12}
@@ -207,7 +210,7 @@ Each column is computed as:
 $$
 J_i =
 \begin{bmatrix}
-\dfrac{\partial \mathbf{p}}{\partial q_i} \\[6pt]
+\dfrac{\partial \mathbf{p}}{\partial q_i} \\
 \mathbf{z}_{i-1}
 \end{bmatrix}
 $$
@@ -243,13 +246,13 @@ python setup.py install
 **2. Install Python dependencies**
 
 ```bash
-pip install PyQt5 pyvista pyvistaqt numpy mediapipe opencv-python
+pip install -r requirements.txt
 ```
 
 **3. Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/abb-irb1600-digital-twin.git
+git clone https://github.com/waldd00/abb-irb1600-digital-twin.git
 cd abb-irb1600-digital-twin
 ```
 
@@ -291,6 +294,18 @@ abb-irb1600-digital-twin/
 ---
 
 ## Usage Guide
+
+### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `1` – `6` | Select joint 1–6 |
+| `↑` / `↓` | Nudge selected joint ±1° |
+| `Shift` + `↑` / `↓` | Nudge selected joint ±5° |
+| `R` | Reset all joints to home pose |
+| `Space` | Play / pause trajectory |
+| `G` | Toggle gripper open ↔ close |
+| `D` | Toggle IK Drag mode |
 
 ### Joint Control
 
