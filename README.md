@@ -1,32 +1,42 @@
 <div align="center">
 
+<img src="docs/screenshot_hero.png" alt="ABB IRB 1600 Digital Twin" width="90%"/>
+
+<br/>
+<br/>
+
 # ABB IRB 1600 Digital Twin
 
-**Real-time 3D digital twin of the ABB IRB 1600-6/1.45 industrial robot**  
-MATLAB kinematics · PyVista visualization · hand-gesture control · built-in robot programming
+**Real-time 3D digital twin of the ABB IRB 1600-6/1.45 industrial robot**
 
 <br/>
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
-![MATLAB](https://img.shields.io/badge/MATLAB-R2020b+-E16737?style=flat-square&logo=mathworks&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Windows_10%2F11-0078D4?style=flat-square&logo=windows&logoColor=white)
-![PyVista](https://img.shields.io/badge/3D-PyVista%20%2B%20VTK-76B900?style=flat-square)
-![MediaPipe](https://img.shields.io/badge/Vision-MediaPipe-FF6F00?style=flat-square&logo=google&logoColor=white)
-![License](https://img.shields.io/badge/License-Educational-lightgrey?style=flat-square)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2020b+-E16737?style=for-the-badge&logo=mathworks&logoColor=white)](https://mathworks.com)
+[![Platform](https://img.shields.io/badge/Windows-10%2F11-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://microsoft.com)
+[![PyVista](https://img.shields.io/badge/PyVista-VTK-76B900?style=for-the-badge)](https://pyvista.org)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Vision-FF6F00?style=for-the-badge&logo=google&logoColor=white)](https://mediapipe.dev)
+[![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)](LICENSE)
 
 <br/>
 
-<img src="docs/screenshot_hero.png" alt="ABB IRB 1600 Digital Twin" width="85%"/>
+*Drive a 6-axis industrial robot through sliders · IK drag · hand gestures · trajectory playback · a built-in scripting language — all in real time, no hardware required.*
 
 </div>
 
 ---
 
-## Overview
+## Table of Contents
 
-This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45** — a 6-axis industrial manipulator widely used in manufacturing. It bridges MATLAB's kinematics engine with a PyQt5 + PyVista desktop application, letting you drive the robot through sliders, keyboard nudges, IK click-to-move, hand gestures, trajectory playback, and a custom scripting language — all in real time.
-
-**Why this project?** Industrial robots are expensive and lab time is scarce. This twin lets you experiment with kinematics algorithms, motion profiles, and gripper logic on your own machine — no hardware required. It started as a university project and grew into a complete simulation environment covering FK/IK, Jacobian analysis, trajectory planning, and computer-vision control.
+- [Demos](#demos)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Kinematics](#kinematics)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Usage Guide](#usage-guide)
+- [Joint Limits](#joint-limits)
+- [License](#license)
 
 ---
 
@@ -36,17 +46,17 @@ This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45
   <tr>
     <td align="center" width="33%">
       <img src="docs/demo_pick_place.gif" width="100%"/>
-      <br/><b>Pick-and-Place</b>
+      <br/><br/><b>Pick-and-Place</b>
       <br/><sub>Auto-generated IK program from pick/drop coordinates</sub>
     </td>
     <td align="center" width="33%">
       <img src="docs/demo_trajectory.gif" width="100%"/>
-      <br/><b>Trajectory Playback</b>
+      <br/><br/><b>Trajectory Playback</b>
       <br/><sub>Multi-waypoint recording with speed-colored TCP trail</sub>
     </td>
     <td align="center" width="33%">
       <img src="docs/demo_vision.gif" width="100%"/>
-      <br/><b>Hand Gesture Control</b>
+      <br/><br/><b>Hand Gesture Control</b>
       <br/><sub>Pinch to close · open hand to release</sub>
     </td>
   </tr>
@@ -56,45 +66,34 @@ This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45
 
 ## Features
 
-<table>
-  <tr>
-    <td width="50%">
-
-**Kinematics & Motion**
-- MATLAB-powered FK/IK engine with DH parameters
-- 6-axis joint sliders + keyboard nudge (1–6, ↑↓, Shift±5°)
-- IK Drag — click any point in the 3D viewport to move TCP
+### Kinematics & Motion
+- MATLAB-powered FK/IK engine with standard DH parameters
+- 6-axis joint sliders + keyboard nudge (`1`–`6`, `↑↓`, `Shift` ±5°)
+- **IK Drag** — click any point in the 3D viewport to move the TCP
 - Motion profiles: Poly-5, Trapezoidal, S-curve
 - Multi-start numerical IK solver (`lsqnonlin`)
 
-**Trajectory & Programming**
+### Trajectory & Programming
 - Record waypoints → preview path → play back at adjustable speed
-- Built-in scripting: `HOME`, `MOVEJ`, `GRIPPER`, `WAIT`
+- Built-in scripting language: `HOME`, `MOVEJ`, `GRIPPER`, `WAIT`
 - Syntax highlighting and one-click pose capture
 - Pick-and-place program auto-generator
 
-    </td>
-    <td width="50%">
-
-**3D Visualization**
+### 3D Visualization
 - Real-time animated STL meshes for all 6 links
 - Robotiq 2F-85 gripper with animated fingers
 - Speed-colored TCP spline trail
 
-**Gripper & Vision**
+### Gripper & Vision
 - Gripper slider + Open / Mid / Close quick buttons
 - Digital I/O LED indicators
 - MediaPipe hand tracking: pinch → close, open hand → open
 - Adjustable smoothing to reduce jitter
 
-**Safety & Logging**
+### Safety & Logging
 - Joint-limit checking and singularity detection
 - Ground clearance and self-collision warnings
 - Time-stamped motion log with CSV export
-
-    </td>
-  </tr>
-</table>
 
 ---
 
@@ -102,14 +101,14 @@ This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45
 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshot_joints.png" width="280"/><br/><sub>Joint Control</sub></td>
-    <td align="center"><img src="docs/screenshot_trajectory.png" width="280"/><br/><sub>Trajectory Playback</sub></td>
-    <td align="center"><img src="docs/screenshot_program.png" width="280"/><br/><sub>Program Editor</sub></td>
+    <td align="center"><img src="docs/screenshot_joints.png" width="280"/><br/><br/><sub>Joint Control</sub></td>
+    <td align="center"><img src="docs/screenshot_trajectory.png" width="280"/><br/><br/><sub>Trajectory Playback</sub></td>
+    <td align="center"><img src="docs/screenshot_program.png" width="280"/><br/><br/><sub>Program Editor</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshot_gripper.png" width="280"/><br/><sub>Gripper Control</sub></td>
-    <td align="center"><img src="docs/screenshot_vision.png" width="280"/><br/><sub>Open Hand → Gripper Open</sub></td>
-    <td align="center"><img src="docs/screenshot_vision2.png" width="280"/><br/><sub>Pinch → Gripper Closed</sub></td>
+    <td align="center"><img src="docs/screenshot_gripper.png" width="280"/><br/><br/><sub>Gripper Control</sub></td>
+    <td align="center"><img src="docs/screenshot_vision.png" width="280"/><br/><br/><sub>Open Hand → Gripper Open</sub></td>
+    <td align="center"><img src="docs/screenshot_vision2.png" width="280"/><br/><br/><sub>Pinch → Gripper Closed</sub></td>
   </tr>
 </table>
 
@@ -118,20 +117,22 @@ This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45
 ## Tech Stack
 
 | Layer | Technology |
-|-------|------------|
-| Robot kinematics | MATLAB Engine API + DH-parameter `.m` files |
-| IK solver | MATLAB `lsqnonlin` (12-element residual, multi-start) |
-| 3D visualization | PyVista + VTK (`BackgroundPlotter`) |
-| GUI framework | PyQt5 |
-| Hand tracking | MediaPipe Tasks (`HandLandmarker`) |
-| Camera capture | OpenCV |
+|:------|:-----------|
+| Robot Kinematics | MATLAB Engine API + DH-parameter `.m` files |
+| IK Solver | MATLAB `lsqnonlin` (12-element residual, multi-start) |
+| 3D Visualization | PyVista + VTK (`BackgroundPlotter`) |
+| GUI Framework | PyQt5 |
+| Hand Tracking | MediaPipe Tasks (`HandLandmarker`) |
+| Camera Capture | OpenCV |
 | Numerics | NumPy |
 
 ---
 
 ## Kinematics
 
-### Denavit-Hartenberg Parameters
+<details>
+<summary><b>Denavit-Hartenberg Parameters</b></summary>
+<br/>
 
 The robot is modelled with the **standard DH convention** (Rot_z → Trans_z → Trans_x → Rot_x).  
 θᵢ is the joint variable; all other columns are fixed link parameters.
@@ -147,9 +148,11 @@ The robot is modelled with the **standard DH convention** (Rot_z → Trans_z →
 
 *Reference: ABB IRB 1600 Product Specification — 3HAC027340-001*
 
----
+</details>
 
-### DH Transformation Matrix
+<details>
+<summary><b>DH Transformation Matrix</b></summary>
+<br/>
 
 Each joint produces a 4×4 homogeneous transformation matrix:
 
@@ -163,9 +166,11 @@ $$
 \end{bmatrix}
 $$
 
----
+</details>
 
-### Forward Kinematics
+<details>
+<summary><b>Forward Kinematics</b></summary>
+<br/>
 
 The base-to-end-effector transform is the chained product of all six matrices:
 
@@ -175,9 +180,11 @@ $$
 
 The upper-left 3×3 block of **T** is the rotation matrix **R** and the last column gives the TCP position **p** = [x, y, z]ᵀ (in mm).
 
----
+</details>
 
-### Inverse Kinematics
+<details>
+<summary><b>Inverse Kinematics</b></summary>
+<br/>
 
 IK is solved numerically with MATLAB's `lsqnonlin` using a **12-element residual**:
 
@@ -190,14 +197,15 @@ $$
 \in \mathbb{R}^{12}
 $$
 
-where $\mathbf{p}(\mathbf{q}) \in \mathbb{R}^3$ is the position error (mm), $\mathbf{R}_{:}$ denotes the vectorised 3×3 rotation matrix (9 elements), and $\lambda = 500$ balances the mm/dimensionless unit mismatch.  
-Using the full rotation-matrix difference avoids the 180° singularity of the skew-symmetric formulation.
+where $\mathbf{p}(\mathbf{q}) \in \mathbb{R}^3$ is the position error (mm), $\mathbf{R}_{:}$ denotes the vectorised 3×3 rotation matrix (9 elements), and $\lambda = 500$ balances the mm/dimensionless unit mismatch.
 
 **Multi-start strategy:** if the residual norm exceeds 10⁻⁶ after the initial guess, up to 10 random restarts are attempted (uniform sampling within joint limits) and the best solution is kept.
 
----
+</details>
 
-### Jacobian
+<details>
+<summary><b>Jacobian</b></summary>
+<br/>
 
 The 6×6 geometric Jacobian relates joint velocities to end-effector twist $[\mathbf{v};\,\boldsymbol{\omega}]$:
 
@@ -215,8 +223,10 @@ J_i =
 \end{bmatrix}
 $$
 
-- **Linear part** $\partial\mathbf{p}/\partial q_i$ — numerical central difference with perturbation $\varepsilon = 10^{-7}$ rad  
+- **Linear part** $\partial\mathbf{p}/\partial q_i$ — numerical central difference with perturbation $\varepsilon = 10^{-7}$ rad
 - **Angular part** $\mathbf{z}_{i-1}$ — z-axis of frame $i-1$, extracted from the partial FK product ${}^0A_1 \cdots {}^{i-2}A_{i-1}$
+
+</details>
 
 ---
 
@@ -225,7 +235,7 @@ $$
 ### Prerequisites
 
 | Requirement | Version |
-|-------------|---------|
+|:------------|:--------|
 | Python | 3.10+ |
 | MATLAB | R2020b+ (Engine API for Python configured) |
 | OS | Windows 10 / 11 |
@@ -234,7 +244,14 @@ $$
 
 ### Installation
 
-**1. Configure MATLAB Engine API for Python**
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/waldd00/abb-irb1600-digital-twin.git
+cd abb-irb1600-digital-twin
+```
+
+**2. Configure MATLAB Engine API for Python**
 
 Follow the [official MathWorks guide](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html). From your MATLAB installation folder:
 
@@ -243,17 +260,10 @@ cd "C:\Program Files\MATLAB\R20XXx\extern\engines\python"
 python setup.py install
 ```
 
-**2. Install Python dependencies**
+**3. Install Python dependencies**
 
 ```bash
 pip install -r requirements.txt
-```
-
-**3. Clone the repository**
-
-```bash
-git clone https://github.com/waldd00/abb-irb1600-digital-twin.git
-cd abb-irb1600-digital-twin
 ```
 
 ### Run
@@ -298,7 +308,7 @@ abb-irb1600-digital-twin/
 ### Keyboard Shortcuts
 
 | Key | Action |
-|-----|--------|
+|:----|:-------|
 | `1` – `6` | Select joint 1–6 |
 | `↑` / `↓` | Nudge selected joint ±1° |
 | `Shift` + `↑` / `↓` | Nudge selected joint ±5° |
@@ -310,7 +320,7 @@ abb-irb1600-digital-twin/
 ### Joint Control
 
 | Action | How |
-|--------|-----|
+|:-------|:----|
 | Move a joint | Drag slider or press `1`–`6` to select, then `↑` / `↓` to nudge ±1° |
 | Large nudge | `Shift` + `↑` / `↓` = ±5° |
 | IK to XYZ | **Run IK — enter XYZ** button |
@@ -340,15 +350,15 @@ Click **Insert MOVEJ (current position)** to capture the current pose, then **Ru
 
 1. Select your camera index (default `0`) → **Start Camera**
 2. Show your hand:
-   - **Open hand** → gripper opens (100 %)
-   - **Pinch thumb + index** → gripper closes (0 %)
+   - **Open hand** → gripper opens (100%)
+   - **Pinch thumb + index** → gripper closes (0%)
 3. Adjust the **Smoothing** slider to reduce jitter
 
 ### Pick-and-Place Demo
 
 1. Go to the **Gripper** tab
 2. Enter pick coordinates (X, Y, Z in mm) and drop zone coordinates
-3. Click **⚙ Generate Pick-and-Place Program**
+3. Click **Generate Pick-and-Place Program**
 4. Switch to the **Program** tab → review → **Run**
 
 ---
@@ -356,7 +366,7 @@ Click **Insert MOVEJ (current position)** to capture the current pose, then **Ru
 ## Joint Limits
 
 | Joint | Min | Max |
-|-------|-----|-----|
+|:-----:|:---:|:---:|
 | J1 | −180° | +180° |
 | J2 | −63° | +110° |
 | J3 | −236° | +60° |
