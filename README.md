@@ -11,18 +11,39 @@
 
 <br/>
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![MATLAB](https://img.shields.io/badge/MATLAB-R2020b+-E16737?style=for-the-badge&logo=mathworks&logoColor=white)](https://mathworks.com)
-[![Platform](https://img.shields.io/badge/Windows-10%2F11-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://microsoft.com)
-[![PyVista](https://img.shields.io/badge/PyVista-VTK-76B900?style=for-the-badge)](https://pyvista.org)
-[![MediaPipe](https://img.shields.io/badge/MediaPipe-Vision-FF6F00?style=for-the-badge&logo=google&logoColor=white)](https://mediapipe.dev)
-[![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)](LICENSE)
-
-<br/>
-
-*Drive a 6-axis industrial robot through sliders · IK drag · hand gestures · trajectory playback · a built-in scripting language — all in real time, no hardware required.*
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2020b+-E16737?style=for-the-badge&logo=mathworks&logoColor=white)](https://www.mathworks.com/products/matlab.html)
+[![Platform](https://img.shields.io/badge/Windows-10%2F11-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/windows)
+[![PyVista](https://img.shields.io/badge/PyVista-VTK-76B900?style=for-the-badge)](https://pyvista.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Vision-FF6F00?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/edge/mediapipe/solutions/guide)
+[![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)](#license)
 
 </div>
+
+---
+
+## Overview
+
+This project is a fully interactive 3D digital twin of the **ABB IRB 1600-6/1.45** — a 6-axis industrial manipulator widely used in manufacturing. It bridges MATLAB's kinematics engine with a PyQt5 + PyVista desktop application, letting you drive the robot through sliders, keyboard nudges, IK click-to-move, hand gestures, trajectory playback, and a custom scripting language — all in real time.
+
+**Why this project?** Industrial robots are expensive and lab time is scarce. This twin lets you experiment with kinematics algorithms, motion profiles, and gripper logic on your own machine — no hardware required. It started as a university project and grew into a complete simulation environment covering FK/IK, Jacobian analysis, trajectory planning, and computer-vision control.
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/waldd00/abb-irb1600-digital-twin.git
+cd abb-irb1600-digital-twin
+pip install -r requirements.txt
+```
+
+```bash
+cd python
+python main.py
+```
+
+> Requires MATLAB R2020b+ with Engine API for Python configured. First launch takes ~10 s while MATLAB starts.
 
 ---
 
@@ -30,6 +51,7 @@
 
 - [Demos](#demos)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Kinematics](#kinematics)
 - [Getting Started](#getting-started)
@@ -66,34 +88,45 @@
 
 ## Features
 
-### Kinematics & Motion
+<table>
+  <tr>
+    <td width="50%" valign="top">
+
+**Kinematics & Motion**
 - MATLAB-powered FK/IK engine with standard DH parameters
 - 6-axis joint sliders + keyboard nudge (`1`–`6`, `↑↓`, `Shift` ±5°)
-- **IK Drag** — click any point in the 3D viewport to move the TCP
+- IK Drag — click any point in the 3D viewport to move the TCP
 - Motion profiles: Poly-5, Trapezoidal, S-curve
 - Multi-start numerical IK solver (`lsqnonlin`)
 
-### Trajectory & Programming
+**Trajectory & Programming**
 - Record waypoints → preview path → play back at adjustable speed
 - Built-in scripting language: `HOME`, `MOVEJ`, `GRIPPER`, `WAIT`
 - Syntax highlighting and one-click pose capture
 - Pick-and-place program auto-generator
 
-### 3D Visualization
+  </td>
+    <td width="50%" valign="top">
+
+**3D Visualization**
 - Real-time animated STL meshes for all 6 links
 - Robotiq 2F-85 gripper with animated fingers
 - Speed-colored TCP spline trail
 
-### Gripper & Vision
+**Gripper & Vision**
 - Gripper slider + Open / Mid / Close quick buttons
 - Digital I/O LED indicators
 - MediaPipe hand tracking: pinch → close, open hand → open
 - Adjustable smoothing to reduce jitter
 
-### Safety & Logging
+**Safety & Logging**
 - Joint-limit checking and singularity detection
 - Ground clearance and self-collision warnings
 - Time-stamped motion log with CSV export
+
+  </td>
+  </tr>
+</table>
 
 ---
 
